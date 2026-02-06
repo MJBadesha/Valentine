@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .yes-button {
+      background: #ff2d75;
+      color: white;
+      font-size: 18px;
+    }
+
+    .no-button {
+      background: #ccc;
+      color: #333;
+      position: absolute;
+    }
+
+    .sad-text {
+      font-size: 14px;
+      margin-top: 20px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="card">
+    <img src="https://pngimg.com/uploads/valentines_day/valentines_day_PNG95723.png" alt="Cute Bear">
+    <h2>Will you be my Valentine? 💖</h2>
+
+    <button class="yes-button" onclick="handleYesClick()">Yes</button>
+    <button class="no-button" id="noBtn">No</button>
+
+    <div class="sad-text" id="message">
+      If you say no, I will be really sad...
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "Hey 😶‍🌫️ don’t do that",
+      "Wait wait wait 😳",
+      "That hurts 💔",
+      "Why are you chasing me 😭",
+      "Okay fine… YES is easier 😌"
+    ];
+
+    let messageIndex = 0;
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.querySelector(".yes-button");
+    const message = document.getElementById("message");
+    const card = document.getElementById("card");
+
+    noBtn.addEventListener("mouseover", () => {
+      const cardRect = card.getBoundingClientRect();
+
+      const maxX = cardRect.width - noBtn.offsetWidth;
+      const maxY = cardRect.height - noBtn.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+
+      message.textContent = messages[messageIndex];
+      messageIndex = (messageIndex + 1) % messages.length;
+
+      const currentSize = parseFloat(
+        window.getComputedStyle(yesBtn).fontSize
+      );
+      yesBtn.style.fontSize = (currentSize * 1.15) + "px";
+    });
+
+    function handleYesClick() {
+      card.innerHTML = `
+        <h2>YAYYY 💕🥰</h2>
+        <p>You just made my heart very happy.</p>
+        <p>Happy Valentine’s 💖</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
+></Doctype>
